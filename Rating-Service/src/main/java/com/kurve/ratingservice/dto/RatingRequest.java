@@ -1,18 +1,18 @@
-package com.kurve.UserService.model;
+package com.kurve.ratingservice.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rating {
-    private Long id;
+public class RatingRequest {
     private Long userId;
     private Long hotelId;
     private int rating;
     private String feedback;
 }
+
