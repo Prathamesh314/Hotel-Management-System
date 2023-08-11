@@ -33,7 +33,7 @@ public class RatingService {
       return ratingRepository.findAll();
    }
 
-   public Rating getRatingById(Long id){
+   public Rating getRatingById(String id){
       Rating rating = ratingRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Rating with Id: "+id));
       return rating;
    }

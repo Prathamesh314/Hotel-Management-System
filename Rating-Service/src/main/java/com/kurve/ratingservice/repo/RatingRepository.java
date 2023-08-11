@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RatingRepository extends MongoRepository<Rating,Long> {
+public interface RatingRepository extends MongoRepository<Rating,String> {
     List<Rating> findByUserId(Long id);
     List<Rating> findByHotelId(Long id);
 }

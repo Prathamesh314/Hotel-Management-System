@@ -33,7 +33,7 @@ public class Controller {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Rating getRatingById(@PathVariable Long id){
+    public Rating getRatingById(@PathVariable String id){
         return ratingService.getRatingById(id);
     }
 

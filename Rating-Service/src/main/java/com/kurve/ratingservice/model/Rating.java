@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("user_ratings")
+import javax.annotation.processing.Generated;
+
+@Document(value = "user_ratings")
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Rating {
 
     @Id
-    private Long id;
+    private String id;
     private Long userId;
     private Long hotelId;
     private int rating;
