@@ -31,13 +31,13 @@ public class HotelController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Hotel getById(@PathVariable Long id){
+    public Hotel getById(@PathVariable String id){
         return hotelService.getHotelById(id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String delete(@PathVariable Long id){
+    public String delete(@PathVariable String id){
         hotelService.delete(id);
         return "Hotel Deleted Successfully";
     }

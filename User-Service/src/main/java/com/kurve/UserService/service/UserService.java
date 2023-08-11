@@ -2,6 +2,7 @@ package com.kurve.UserService.service;
 
 import com.kurve.UserService.dto.UserRequest;
 import com.kurve.UserService.exception.ResourceNotFoundException;
+import com.kurve.UserService.model.Hotel;
 import com.kurve.UserService.model.Rating;
 import com.kurve.UserService.model.User;
 import com.kurve.UserService.repo.UserRepository;
@@ -12,7 +13,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +40,7 @@ public class UserService {
     }
 
     // delete
-    public void deleteUser(Long id){
+    public void deleteUser(String id){
         User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found with id: "+id));
         userRepository.delete(user);
     }
@@ -48,10 +51,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id){
+    public User getUserById(String id){
         User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found with id: "+id));
-        ArrayList<Rating> ratings = restTemplate.getForObject("http://localhost:8083/api/rating/user/" + id, ArrayList.class);
-        user.setRatings(ratings);
+        Rating[] ratingOfUsers = restTemplate.getForObject("http://localhost:8083/api/rating/user/" + id, Rating[].class);
+        List<Rating> ratings = Arrays.stream(ratingOfUsers).toList();
+        List<Rating> newratings = ratings.stream().map(
+                rating -> {
+                    //http://localhost:8082/api/hotel/1
+                    Hotel hotel = restTemplate.getForObject("http://localhost:8082/api/hotel/" + rating.getHotelId(), Hotel.class);
+                    rating.setHotel(hotel);
+                    return rating;
+                }
+        ).collect(Collectors.toList());
+        user.setRatings(newratings);
         return user;
     }
 

@@ -1,4 +1,4 @@
-package com.kurve.ratingservice.model;
+package com.kurve.UserService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

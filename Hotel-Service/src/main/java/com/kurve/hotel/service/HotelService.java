@@ -35,14 +35,14 @@ public class HotelService {
         return hotelRepository.findAll();
     }
 
-    public Hotel getHotelById(Long id){
+    public Hotel getHotelById(String id){
         Hotel hotel = hotelRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Hotel Not Found with Id: "+id));
         return hotel;
     }
 
     // delete
 
-    public void delete(Long id){
+    public void delete(String id){
         Hotel hotel = hotelRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Hotel Not Found with Id: "+id));
         hotelRepository.delete(hotel);
     }
