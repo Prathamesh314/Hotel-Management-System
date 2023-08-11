@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,5 +25,5 @@ public class User {
     private String password;
     private String about;
     @Transient
-    private List<Rating> ratings;
+    private List<Rating> ratings = new ArrayList<>();
 }
