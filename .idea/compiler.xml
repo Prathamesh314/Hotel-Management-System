@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Rating-Service" />
         <module name="Discovery-Server" />
+        <module name="ApiGateway" />
         <module name="User-Service" />
         <module name="Hotel-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ApiGateway" target="17" />
       <module name="Discovery-Server" target="17" />
       <module name="Hotel-Management-System" target="19" />
       <module name="Hotel-Service" target="17" />
@@ -23,6 +25,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
       <module name="Discovery-Server" options="-parameters" />
       <module name="Hotel-Service" options="-parameters" />
       <module name="Rating-Service" options="-parameters" />

@@ -53,12 +53,12 @@ public class UserService {
 
     public User getUserById(String id){
         User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found with id: "+id));
-        Rating[] ratingOfUsers = restTemplate.getForObject("http://localhost:8083/api/rating/user/" + id, Rating[].class);
+        Rating[] ratingOfUsers = restTemplate.getForObject("http://RATING-SERVICE/api/rating/user/" + id, Rating[].class);
         List<Rating> ratings = Arrays.stream(ratingOfUsers).toList();
         List<Rating> newratings = ratings.stream().map(
                 rating -> {
                     //http://localhost:8082/api/hotel/1
-                    Hotel hotel = restTemplate.getForObject("http://localhost:8082/api/hotel/" + rating.getHotelId(), Hotel.class);
+                    Hotel hotel = restTemplate.getForObject("http://HOTEL-SERVICE/api/hotel/" + rating.getHotelId(), Hotel.class);
                     rating.setHotel(hotel);
                     return rating;
                 }
