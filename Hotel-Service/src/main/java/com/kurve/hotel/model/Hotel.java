@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
     private String location;

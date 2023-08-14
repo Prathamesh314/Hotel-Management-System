@@ -18,7 +18,6 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
     private String email;

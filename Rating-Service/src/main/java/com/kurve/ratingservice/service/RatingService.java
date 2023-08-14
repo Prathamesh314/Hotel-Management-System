@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,10 @@ public class RatingService {
    private final RatingRepository ratingRepository;
 
    public void createRating(RatingRequest ratingRequest){
+      String randomid = UUID.randomUUID().toString();
+
       Rating rating = Rating.builder()
+              .id(randomid)
               .userId(ratingRequest.getUserId())
               .hotelId(ratingRequest.getHotelId())
               .rating(ratingRequest.getRating())
@@ -38,12 +42,12 @@ public class RatingService {
       return rating;
    }
 
-   public List<Rating> getRatingByUser(Long userID){
+   public List<Rating> getRatingByUser(String userID){
       List<Rating> ratings = ratingRepository.findByUserId(userID);
       return ratings;
    }
 
-   public List<Rating> getRatingByHotel(Long hotelId){
+   public List<Rating> getRatingByHotel(String hotelId){
       return ratingRepository.findByHotelId(hotelId);
    }
 

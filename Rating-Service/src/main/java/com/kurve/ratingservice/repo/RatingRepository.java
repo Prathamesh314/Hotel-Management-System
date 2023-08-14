@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface RatingRepository extends MongoRepository<Rating,String> {
-    List<Rating> findByUserId(Long id);
-    List<Rating> findByHotelId(Long id);
+    List<Rating> findByUserId(String id);
+    List<Rating> findByHotelId(String id);
 }

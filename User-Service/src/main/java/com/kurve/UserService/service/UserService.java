@@ -15,6 +15,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +30,9 @@ public class UserService {
     // add
 
     public void createUser(UserRequest userRequest){
+        String randomid = UUID.randomUUID().toString();
         User user = User.builder()
+                .id(randomid)
                 .name(userRequest.getName())
                 .email(userRequest.getEmail())
                 .password(userRequest.getPassword())

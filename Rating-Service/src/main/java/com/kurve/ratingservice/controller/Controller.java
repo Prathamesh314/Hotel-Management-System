@@ -39,14 +39,14 @@ public class Controller {
 
     @GetMapping("/user/{userID}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Rating> getByUser(@PathVariable Long userID)
+    public List<Rating> getByUser(@PathVariable String userID)
     {
         return ratingService.getRatingByUser(userID);
     }
 
     @GetMapping("/hotel/{hotelID}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Rating> getByHotel(@PathVariable Long hotelID)
+    public List<Rating> getByHotel(@PathVariable String hotelID)
     {
         return ratingService.getRatingByHotel(hotelID);
     }

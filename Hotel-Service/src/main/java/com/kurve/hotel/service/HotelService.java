@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +20,9 @@ public class HotelService {
 
     // create
     public void createHotel(HotelRequest hotelRequest){
+        String randomid = UUID.randomUUID().toString();
         Hotel hotel = Hotel.builder()
+                .id(randomid)
                 .name(hotelRequest.getName())
                 .location(hotelRequest.getLocation())
                 .about(hotelRequest.getAbout())
